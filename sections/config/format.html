@@ -1,0 +1,206 @@
+<section>
+	<h1 class="blue" data-id="#settings"><i class="ace-icon fa fa-cog grey"></i> 配置文件详解</h1>
+	
+	<div class="hr hr-double hr32"></div>
+	<!-- #section:settings -->
+    <div class="help-content">
+        <p>
+            <b>Bilibili 直播弹幕助手</b> 的配置文件是根目录下的 <b>config.js</b>。
+        </p>
+        <p>
+            如果您是新手，建议您使用<a href="#config/tool"> 快速配置工具 </a>生成配置文件。
+        </p>
+    </div>
+    <div class="hr hr-double hr32"></div>
+
+	<div class="help-content">
+		<h3 class="info-title smaller">结构</h3>
+		<div class="info-section">
+		 <ul class="info-list list-unstyled">
+			<li>
+				一个基础的 <b>config.js</b> 是长这样的 :
+<pre data-language="javascript">
+exports.config={
+    "showTime":false,
+    "showWatcherNum":true,
+    "showUserName":true,
+    "reconnect":true,
+    "save":true
+};
+exports.liveroom={
+    url:'',
+    roomid:null
+};
+</pre>
+			由两部分组成，第一部分是<b>弹幕服务器客户端</b>的配置（即<b>exports.config</b>），第二部分是<b>直播间</b>的配置（即<b>exports.liveroom</b>）。
+                </br>
+            下面将会分开讲解各配置的意义。
+			</li>
+			
+		 </ul>
+		</div>
+
+	</div>
+	
+	<div class="hr hr-double hr32"></div>
+	<h2 class="blue lighter help-title" data-id="#config/format.comment">
+        弹幕服务器客户端(exports.config)
+	</h2>
+	<div class="space-4"></div>
+
+	<!-- #section:settings.config -->
+	<div class="help-content">
+		<h3 class="info-title smaller" data-id="#config/format.showtime">showTime 弹幕是否显示时间</h3>
+		<!-- #section:settings.showTime -->
+		<div class="info-section">
+		 <ul class="info-list list-unstyled">
+			<li>
+                [弹幕]是否显示时间?  true 是 / false 否
+                </br>建议为 <code>false</code>
+            </li>
+            <li>
+				如果设置为 <code>true</code> 那么控制台会显示成这样:
+<pre data-language="generic">
+  [2014-01-01 00:00:00] ...
+</pre>
+			</li>
+		 </ul>
+		</div>
+		<!-- /section:settings.showTime -->
+
+		<h3 class="info-title smaller" data-id="#config/format.showwatchernum">showWatcherNum 是否显示在线人数</h3>
+		<!-- #section:settings.showWatcherNum -->
+		<div class="info-section">
+		 <ul class="info-list list-unstyled">
+			<li>
+                [服务器]是否显示在线人数?  true 是 / false 否
+                </br>心跳包返回数据后显示。心跳包频率为 10s/次。
+                </br>建议为 <code>false</code> (除非需要实时观察人数)
+            </li>
+             <li>
+                 如果设置为 <code>true</code> 那么控制台会显示成这样:
+<pre data-language="html">
+#在线人数: 999
+</pre>
+			</li>
+		 </ul>
+		</div>
+		<!-- /section:settings.showWatcherNum -->
+
+        <h3 class="info-title smaller" data-id="#config/format.showusername">showUserName 弹幕是否显示发布者</h3>
+        <!-- #section:settings.showUserName -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    [弹幕]是否显示发布者?(仅限live有效)  true 是 / false 否
+                    </br>建议为 <code>true</code>
+                </li>
+                <li>
+                    如果设置为 <code>true</code> 那么控制台会显示成这样:
+<pre data-language="html">
+ ... ⑨bishi : ...
+</pre>
+                </li>
+            </ul>
+        </div>
+		<!-- /section:settings.showUserName -->
+
+        <h3 class="info-title smaller" data-id="#config/format.reconnect">reconnect 是否断线重连</h3>
+        <!-- #section:settings.reconnect -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    [服务器]是否断线重连?  true 是 / false 否
+                    </br>建议为 <code>true</code> (一般来说用不上,以防万一)
+                </li>
+            </ul>
+        </div>
+        <!-- /section:settings.reconnect -->
+
+        <h3 class="info-title smaller" data-id="#config/format.save">save 是否保存弹幕源数据</h3>
+        <!-- #section:settings.save -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    [弹幕]是否保存弹幕源数据?  true 是 / false 否
+                    </br>建议为 <code>false</code>
+                </li>
+                <li>
+                    <b>弹幕源数据</b>保存至 程序根目录下的 <code>comments</code> 文件夹,命名格式 <code>&lt;cid&gt;_&lt;timestamp&gt;.source</code>
+                    </br>具体<b>弹幕源数据</b>的格式请看<a href="#api/commentsource">弹幕源数据开发文档</a>。
+                </li>
+            </ul>
+        </div>
+        <!-- /section:settings.save -->
+	</div>
+
+	<div class="hr hr-double hr32"></div>
+    <h2 class="blue lighter help-title" data-id="#config/format.liveroom">
+        直播间(exports.liveroom)
+    </h2>
+    <div class="space-4"></div>
+
+    <!-- #section:settings.liveroom -->
+    <div class="help-content">
+        <h3 class="info-title smaller" data-id="#config/format.liveroom_intro">概述</h3>
+        <!-- #section:settings.liveroom_intro -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    本设置为<b>必填项目</b>，用于访问弹幕服务器。有<code>url</code> / <code>roomid</code>两个参数。
+                </li>
+                <li>
+                    只需要选择一个参数设置就可以访问弹幕服务器了。
+                </li>
+                <li>
+                    下面会讲到二者差别。
+                </li>
+            </ul>
+        </div>
+        <!-- /section:settings.liveroom_intro -->
+
+        <h3 class="info-title smaller" data-id="#config/format.url">url 直播室网址</h3>
+        <!-- #section:settings.url -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    直播室网址
+                    </br>例如: <code>url:'http://live.bilibili.com/live/1029.html'</code> (切记 一定要用 英文逗号圈住地址)
+                </li>
+                <li>
+                    这里是范本:
+<pre data-language="javascript">
+exports.liveroom={
+    url:'http://live.bilibili.com/live/1029.html'
+};
+</pre>
+                </li>
+            </ul>
+        </div>
+        <!-- /section:settings.url -->
+
+        <h3 class="info-title smaller" data-id="#config/format.roomid">roomid 直播室id</h3>
+        <!-- #section:settings.roomid -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    直播室id
+                    </br>例如 <code>roomid:'1001'</code> 或者 <code>roomid:1001</code>
+                </li>
+                <li>
+                    这里是范本:
+<pre data-language="javascript">
+exports.liveroom={
+    roomid:1001
+};
+</pre>
+                </li>
+            </ul>
+        </div>
+        <!-- /section:settings.roomid -->
+
+    </div>
+
+	<!-- /section:settings -->
+
+</section>

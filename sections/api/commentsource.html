@@ -1,0 +1,74 @@
+<section>
+<h1 class="blue" data-id="#settings"><i class="ace-icon fa fa-info grey"></i> 弹幕源数据</h1>
+
+<div class="hr hr-double hr32"></div>
+<!-- #section:api -->
+<div class="help-content">
+    <p>
+        <b>弹幕源数据</b> 是根目录下的 <b>comments</b>文件夹内的 <b>.source</b>文件。
+    </p>
+    <p>
+        它是为了助手而设计的，所以开发读取.source文件需要看一下下面的开发文档。
+    </p>
+</div>
+<div class="hr hr-double hr32"></div>
+
+<div class="help-content">
+    <h3 class="info-title smaller">文件结构</h3>
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>[live_programinfo,0x00,0x00,stream1,0x00,stream2,0x00,...,streamN,0x00]</code>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="hr hr-double hr32"></div>
+<h2 class="blue lighter help-title" data-id="#api/commentsource.format">
+    数据格式
+</h2>
+<div class="space-4"></div>
+<!-- #section:api.format -->
+<div class="help-content">
+    <h3 class="info-title smaller" data-id="#api/biliinterface.live_programinfo">live_programinfo </h3>
+    <!-- #section:api.live_programinfo -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <a href="#api/biliinterface.getliveinfo">请看bilibili接口-命令-getLiveInfo-info</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.live_programinfo -->
+
+    <h3 class="info-title smaller" data-id="#api/biliinterface.newCommentString">Stream newCommentString </h3>
+    <!-- #section:api.newCommentString -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <a href="#api/commentclient.client_event_newCommentString">请看弹幕服务器客户端-Class : Client-Event 'newCommentString'-源数据格式</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.newCommentString -->
+
+    <h3 class="info-title smaller" data-id="#api/biliinterface.watcherNum">Stream watcherNum </h3>
+    <!-- #section:api.watcherNum -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>action</code>  Stream 动作类型</br>
+                <code>num</code>  弹幕聊天室在线人数
+            </li>
+            <li>
+                弹幕聊天室观众人数
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.watcherNum -->
+</div>
+<!-- /section:api -->
+
+</section>

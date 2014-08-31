@@ -1,0 +1,212 @@
+<section>
+<h1 class="blue" data-id="#settings"><i class="ace-icon fa fa-info grey"></i> 弹幕服务器客户端API</h1>
+
+<div class="hr hr-double hr32"></div>
+<!-- #section:api -->
+<div class="help-content">
+    <p>
+        <b>弹幕服务器客户端</b> 是根目录下的 <b>commentclient.js</b>。它是一个<b>Node.js</b>的库。
+    </p>
+    <p>
+        它可以访问弹幕服务器，同步获取弹幕聊天室里的弹幕和其它信息。
+    </p>
+</div>
+<div class="hr hr-double hr32"></div>
+
+<div class="help-content">
+    <h3 class="info-title smaller">开始使用</h3>
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                要启用 <b>弹幕服务器客户端</b> 很简单，只需要你 :
+<pre data-language="javascript">
+var CommentClient = require('./commentclient.js').Client;
+var nowClient = new CommentClient();
+</pre>
+                下面会详细讲解Client的一些命令和基础事件。
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="hr hr-double hr32"></div>
+<h2 class="blue lighter help-title" data-id="#api/commentclient.class_client">
+    Class : Client
+</h2>
+<div class="space-4"></div>
+
+<!-- #section:api.class_client -->
+<div class="help-content">
+    <h3 class="info-title smaller" data-id="#api/commentclient.new_commentclient">new CommentClient([base])</h3>
+    <!-- #section:api.new_commentclient -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>base</code>  弹幕服务器配置信息。默认为<code>{"host":"chat.bilibili.com","port":88}</code>
+            </li>
+            <li>
+                返回一个新的弹幕服务器客户端。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.new_commentclient -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_connect">client.connect(chatid,[userid],[pwd])</h3>
+    <!-- #section:api.connect -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>chatid</code>  直播间的cid。<b>必填项目</b>
+                </br><code>userid</code> 当前用户的userid
+                </br><code>pwd</code> 当前用户的pwd (请看<a href="http://interface.bilibili.com/player?id=cid:2189477" target="_blank">Bilibili的player接口(登录后才可以看到这个参数)</a>)
+            </li>
+            <li>
+                连接弹幕聊天室。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.connect -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_send">client.send(data)</h3>
+    <!-- #section:api.send -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>data</code>  待发送的数据(二进制)。<b>必填项目</b>
+            </li>
+            <li>
+                发送已parse的数据到弹幕服务器。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.send -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_sendunpacked">client.sendUnPacked(data)</h3>
+    <!-- #section:api.sendunpacked -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>data</code>  待发送的数据(二进制)。<b>必填项目</b>
+            </li>
+            <li>
+                发送未parse的数据到弹幕服务器。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.sendunpacked -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_disconnect">client.disconnect()</h3>
+    <!-- #section:api.disconnect -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                断开与弹幕服务器的连接。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.disconnect -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_server_error">Event 'server_error'</h3>
+    <!-- #section:api.event_server_error -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>error</code>  错误信息
+            </li>
+            <li>
+                服务器发生错误。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.event_server_error -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_close">Event 'close'</h3>
+    <!-- #section:api.close -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                连接已中断。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.close -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_error">Event 'error'</h3>
+    <!-- #section:api.error -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                socket发生错误。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.error -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_login_success">Event 'login_success'</h3>
+    <!-- #section:api.error -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>num</code>  弹幕聊天室在线人数
+            </li>
+            <li>
+                访问弹幕服务器成功。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.error -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_newCommentString">Event 'newCommentString'</h3>
+    <!-- #section:api.newCommentString -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>data</code>  弹幕源数据
+            </li>
+            <li>
+                有新的弹幕。
+            </li>
+            <li>
+                源数据格式:</br>
+                <code>["playtime(stime),mode,fontsize,color,timestamp(date),rnd,pool,bili-userID,bili-danmuID","message",["bili-userID","bili-nickname","unknown"]]</code>
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.newCommentString -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_newScrollMessage">Event 'newScrollMessage'</h3>
+    <!-- #section:api.newScrollMessage -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>data</code>  滚动源数据
+            </li>
+            <li>
+                有新的滚动信息。
+            </li>
+            <li>
+                源数据格式:</br>
+                <code>{text:"",highlight:true,bgcolor:0,flash:true,tooltip:""}</code>
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.newScrollMessage -->
+
+    <h3 class="info-title smaller" data-id="#api/commentclient.client_event_unknown_bag">Event 'unknown_bag'</h3>
+    <!-- #section:api.unknown_bag -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>data</code>  异常数据
+            </li>
+            <li>
+                有异常数据。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.unknown_bag -->
+</div>
+<!-- /section:api -->
+
+</section>
