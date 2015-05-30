@@ -110,9 +110,9 @@
     var fileData='';
     jQuery(function($) {
         $("#form-field-create").on('click', function (event) {
-            if ($('#form-field-url').val() == "") return alert("请填入直播间的网址\n例如 : http://live.bilibili.com/live/1001.html");
+            if ($('#form-field-url').val() == "") return alert("请填入直播间的网址\n例如 : http://live.bilibili.com/1001");
             var roomid=parseLiveUrl($('#form-field-url').val());
-            if (!roomid) return alert("请填入符合格式的直播间的网址\n例如 : http://live.bilibili.com/live/1001.html");
+            if (!roomid) return alert("请填入符合格式的直播间的网址\n例如 : http://live.bilibili.com/1001");
             fileData=buildConfigFile(roomid,document.getElementById("form-field-showtime").checked,document.getElementById("form-field-showusername").checked,document.getElementById("form-field-showwatchernum").checked,document.getElementById("form-field-reconnect").checked,document.getElementById("form-field-save").checked);
 
             $('#p-source').html(fileData);
@@ -150,7 +150,7 @@
         });
     }
     function parseLiveUrl(url){
-        var liveid = url.match(/live.bilibili.com\/live\/(.*?)\.html/);
+        var liveid = (url + "/").match(/live.bilibili.com\/(.*?)\//);
         return liveid[1];
     }
     var Base64 = {
