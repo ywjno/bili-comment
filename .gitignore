@@ -26,3 +26,12 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# WerbStorm Project File
+.idea
+
+# Saved Danmu File
+comment
+
+#ignore CMD files
+*.cmd

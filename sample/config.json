@@ -1,0 +1,15 @@
+{
+  "room": {
+    "live_id": 19386,
+    "live_url": "http://live.bilibili.com/19386"
+  },
+  "settings": {
+    "showTime": false,
+    "showUserName": true,
+    "showWatcherNum": false,
+    "show_gift": true,
+    "output": true,
+    "output_path": null,
+    "output_filename": "%t.comments"
+  }
+}
