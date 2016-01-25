@@ -3,9 +3,25 @@
  *
  */
 var lang = require('../lang').Client;
-var colors = require('colors');
 
 var util = {};
+
+const COMMENT_SERVER_LATEST_VERSION = 2;
+const COMMENT_SERVER_VERSIONS = [1, 2];
+
+/**
+ * 检查弹幕服务器版本
+ * @param v
+ */
+util.checkCommentServerVersion = function(v) {
+    v = parseInt(v);
+    var flag = false;
+    for(var i = 0, len = COMMENT_SERVER_VERSIONS.length; i < len; i++) {
+        if(COMMENT_SERVER_VERSIONS[i] == v) flag = true;
+    }
+    if(!flag) v = COMMENT_SERVER_LATEST_VERSION;
+    return v;
+};
 
 /**
  * 命令行传入参数转配置对象
@@ -27,6 +43,11 @@ util.args2ConfigObject = function(program) {
             output: !!program.output,
             output_path: program.output_path,
             output_filename: program.output_filename
+        },
+        server: {
+            host: program.host,
+            port: program.port,
+            version: util.checkCommentServerVersion(program.sver)
         }
     };
 };
