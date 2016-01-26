@@ -1,42 +1,60 @@
- <section>
-	  <h1 class="blue" data-id="intro">
-		<i class="ace-icon fa fa-paper-plane green"></i>
-		安装和使用
-	  </h1>
-	  <hr />
-  
-	  <div class="help-content">
-          <h2 class="header lighter blue"><i class="ace-icon fa fa-inbox orange"></i> 安装</h2>
+<section>
+    <h1 class="blue" data-id="intro">
+        <i class="ace-icon fa fa-paper-plane green"></i>
+        安装和使用
+    </h1>
+    <hr />
 
-          <p><b>Bilibili 直播弹幕助手</b> 是纯绿色软件。只要正确安装了<b>Node.js</b>，助手是直接解压就能用的.</p>
+    <div class="help-content">
 
-		  <div class="hr hr-double hr32"></div>
-		  
-		  <h2 class="header blue lighter"><i class="ace-icon fa fa-power-off green"></i> 使用</h2>
-		  <p>
-			在Window之下运行 <b>Bilibili 直播弹幕助手</b> 其实很简单，只要双击 <b>run.cmd</b> 就可以了，是不是很简单。
-		  </p>
-          <p>
-              如果是其他系统，在助手的根目录下运行 <b>node bili-comment.js</b> 这个代码就OK了。
-          </p>
+        <!-- ## 安装 ## -->
+        <h2 class="header lighter blue"><i class="ace-icon fa fa-inbox orange"></i> 安装</h2>
 
-          <div class="alert alert-warning alert-block">
-			<span class="bigger-110">
-				刚刚解压好了 <b>Bilibili 直播弹幕助手</b> 并非意味着安装结束了。还要<b>设置直播间</b>!
-			</span>
-          </div>
+        <p><b>Bilibili 直播弹幕助手</b> 是纯绿色软件。只要正确安装了<b>Node.js</b>，助手是直接解压就能用的.</p>
 
-         <p>
-             有关 <b>Bilibili 直播弹幕助手</b> <b>设置直播间</b>的问题，请移步 <a href="#config/tool">快速配置工具</a> 在线生成配置文件。
-         </p>
+        <!-- ## 初次配置 ## -->
+        <h2 class="header blue lighter"><i class="ace-icon fa fa-cogs green"></i> 初次配置</h2>
 
-          <h2 class="header blue lighter"><i class="ace-icon fa fa-magic green"></i> 我有特殊的使用技巧</h2>
+        <p>刚刚解压好了 <b>Bilibili 直播弹幕助手</b> 并非意味着安装结束了。还要<b>设置直播间</b>!</p>
 
-          <p>
-              想让助手窗口没那么宽又可以全部内容都显示吗？</br>
-              只要右键单击 <b>助手的cmd标题栏</b> -> <b>属性(P)</b> -> <b>布局</b> -> <b>屏幕缓冲区大小</b> -> <b>宽度</b> 调小一点，调到适合 就可以了。</br>
-              成功了就来个Nice !</br>
-              更多CMD的用法尽情探索。
-          </p>
-	</div>
+        <p>现在的Bilibili 直播弹幕助手支持两种启动的方式。第一种是 <b>带命令行参数运行</b>，第二种是 <b>通过读取配置文件运行</b>。</p>
+
+        <p>前者为 <b>专家模式</b>。启动传参类似于： <code>node cli -i 19386 -U -g -o</code>。</p>
+
+        <p>专家们可以运行 <code>node cli -h</code> 查看支持的参数，下面不再阐述这种方法的启动方式</p>
+
+        <p>后者为简单的方法，可以通过<a href="#config/tool">网页端生成的配置文件</a> 或者 <b>利用命令行生成配置文件</b>（查看帮助: <code>node configBuilder -h</code>）来启动助手。</p>
+
+        <p>下载配置文件（好比说保存为 <code>config.json</code>），保存在 <b>Bilibili 直播弹幕助手</b>的根目录上。</p>
+
+        <h3>Windows 系统</h3>
+
+        <p>如果你是 <strong>Windows</strong>，可以尝试使用 <code>.cmd</code>启动助手。</p>
+
+        <p>只需要改我们提供的 <code>run.cmd</code> (在助手的根目录)， 把里面的内容配置成 <code>node cli -c config.json</code>（config.json是配置文件路径）。</p>
+
+        <h3>其它 系统</h3>
+
+        <p>可以尝试使用 <code>bash</code> 写个脚本运行 <code>node cli -c config.json</code></p>
+
+        <p></p>
+
+        <!-- ## 运行 ## -->
+        <h2 class="header blue lighter"><i class="ace-icon fa fa-power-off green"></i> 运行</h2>
+
+        <p>Windows系统的主播只需要双击 <code>run.cmd</code> 就可以了启动了~~是不是很简单。</p>
+
+        <p>如果是其他系统，执行你们写好的脚本或者直接运行程序都OK。</p>
+
+        <!-- ## 我有特殊的使用技巧 ## -->
+        <h2 class="header blue lighter"><i class="ace-icon fa fa-magic green"></i> 我有特殊的使用技巧 (限Windows)</h2>
+
+        <p>想让助手窗口没那么宽又可以全部内容都显示吗？</p>
+
+        <p>只要右键单击 <b>助手的cmd标题栏</b> -> <b>属性(P)</b> -> <b>布局</b> -> <b>屏幕缓冲区大小</b> -> <b>宽度</b> 调小一点，调到适合 就可以了。</p>
+
+        <p>成功了就来个Nice !</p>
+
+        <p>更多CMD的用法尽情探索。</p>
+    </div>
 </section>

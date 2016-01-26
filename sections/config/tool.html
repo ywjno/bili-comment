@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-url">直播间地址</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="例如 : http://live.bilibili.com/live/1001.html" id="form-field-url" />
+                    <input type="text" class="form-control" placeholder="例如 : http://live.bilibili.com/19386" id="form-field-url" />
                 </div>
             </div>
             <div class="form-group">
@@ -46,19 +46,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-reconnect">是否断线重连?</label>
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-show_gift">是否显示礼物?</label>
                 <div class="col-sm-9">
                     <label>
-                        <input type="checkbox" id="form-field-reconnect" class="ace ace-switch ace-switch-4 btn-flat btn-empty" checked />
+                        <input type="checkbox" id="form-field-show_gift" class="ace ace-switch ace-switch-4 btn-flat btn-empty" checked />
                         <span class="lbl"></span>
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-save">是否保存弹幕源数据?</label>
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-output">是否保存弹幕源数据?</label>
                 <div class="col-sm-9">
                     <label>
-                        <input type="checkbox" id="form-field-save" class="ace ace-switch ace-switch-4 btn-flat btn-empty" />
+                        <input type="checkbox" id="form-field-output" class="ace ace-switch ace-switch-4 btn-flat btn-empty" />
                         <span class="lbl"></span>
                     </label>
                 </div>
@@ -84,7 +84,13 @@
             <button class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
 
 			<span class="bigger-110">
-				生成成功! 请在下方保存配置文件，下载后修改名称为<code> config.js </code>，覆盖原有的文件，重开 <b>助手</b> 即可生效。
+				生成成功! 请在下载配置文件到助手根目录，更改命令行参数使<b>-c</b>指向刚刚下载好的配置文件，重开 <b>助手</b> 即可生效。
+                <br>
+                CMD文件内容:
+                <br>
+                <code>
+                    node cli -c {替换为配置文件的相对路径}
+                </code>
 			</span>
         </div>
         <div class="clearfix">
@@ -97,7 +103,9 @@
         <div class="space-4"></div>
         <div id="c-source">
             <p>
-                如果下载不行，那这里也有另一种办法。</br>下面是配置文件源代码，只需要使用<b>记事本</b>把下面的内容覆盖<code> config.js </code>原来的内容也是可以的。
+                如果下载不行，那这里也有另一种办法。</br>下面是配置文件源代码，手动保存到电脑上。
+            </p>
+            <p>
             <pre data-language="javascript" id="p-source"></pre>
             </p>
         </div>
@@ -107,13 +115,18 @@
 
 </section>
 <script type="text/javascript">
-    var fileData='';
+    var fileData = '';
     jQuery(function($) {
         $("#form-field-create").on('click', function (event) {
-            if ($('#form-field-url').val() == "") return alert("请填入直播间的网址\n例如 : http://live.bilibili.com/1001");
-            var roomid=parseLiveUrl($('#form-field-url').val());
+            var roomid = parseLiveUrl($('#form-field-url').val());
             if (!roomid) return alert("请填入符合格式的直播间的网址\n例如 : http://live.bilibili.com/1001");
-            fileData=buildConfigFile(roomid,document.getElementById("form-field-showtime").checked,document.getElementById("form-field-showusername").checked,document.getElementById("form-field-showwatchernum").checked,document.getElementById("form-field-reconnect").checked,document.getElementById("form-field-save").checked);
+            fileData = buildConfigFile(
+                    roomid,
+                    document.getElementById("form-field-showtime").checked,
+                    document.getElementById("form-field-showusername").checked,
+                    document.getElementById("form-field-showwatchernum").checked,
+                    document.getElementById("form-field-show_gift").checked,
+                    document.getElementById("form-field-output").checked);
 
             $('#p-source').html(fileData);
             $('#c-result').show();
@@ -121,7 +134,7 @@
         $("#btn-save").on('click', function (event) {
             // IE
             if(/msie/i.test(navigator.userAgent)) {
-                    var path = prompt("保存到 助手 的根目录 覆盖原有的 config.js", "C:\\config.js");
+                    var path = prompt("保存到 助手 的根目录", "C:\\config.json");
                     var content = document.getElementById("content").value;
                     content = content.replace(/\n/g, "\r\n");
                     var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -138,21 +151,37 @@
         });
     });
 
-    function buildConfigFile(roomid,showtime,showusername,showwatchernum,reconnect,issave){
-        return 'exports.config='+JSON.stringify({
-            "showTime":showtime,
-            "showWatcherNum":showwatchernum,
-            "showUserName":showusername,
-            "reconnect":reconnect,
-            "save":issave
-        })+';exports.liveroom='+JSON.stringify({
-            roomid:roomid
-        });
+    function buildConfigFile(roomid, showtime, showusername, showwatchernum, show_gift, output){
+        var data =  {
+            room: {
+                live_id: roomid
+            },
+            settings: {
+                showTime: !!showtime,
+                showUserName: !!showusername,
+                showWatcherNum: !!showwatchernum,
+                show_gift: !!show_gift,
+                reconnect: true,
+                output: !!output
+            }
+        };
+        return JSON.stringify(data);
     }
+
     function parseLiveUrl(url){
-        var liveid = (url + "/").match(/live.bilibili.com\/(.*?)\//);
-        return liveid[1];
+        var reg = [
+            /live.bilibili.com\/live\/(.*?).html/,
+            /live.bilibili.com\/(.*?)\//
+        ];
+        if(reg[0].test(url)) { //旧的格式
+            return url.match(reg[0])[1];
+        }
+        //新的格式
+        url = url + "/";
+        if(!reg[1].test(url)) return null;
+        return (url.match(reg[1]))[1];
     }
+
     var Base64 = {
         _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
         encode : function (input) {
@@ -227,7 +256,7 @@
         _utf8_decode : function (utftext) {
             var string = "";
             var i = 0;
-            var c = c1 = c2 = 0;
+            var c = 0, c1 = 0, c2 = 0, c3;
             while ( i < utftext.length ) {
                 c = utftext.charCodeAt(i);
                 if (c < 128) {

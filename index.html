@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Bilibili 直播弹幕助手</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,232 +8,62 @@
     <meta name="author" content="payne">
 
     <link href="http://www.micblo.com/stat/ace/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://www.micblo.com/stat/ace/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://www.micblo.com/stat/ace/css/font-awesome.min.css" rel="stylesheet" />
 
     <link href="http://www.micblo.com/stat/ace/css/docs.css" rel="stylesheet">
     <link href="http://www.micblo.com/stat/ace/css/prettify.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-fonts.css" />
-	<link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace.min.css" />
-	<!--[if lte IE 9]>
-		<link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-part2.min.css" />
-	<![endif]-->
-	<link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-skins.min.css" />
-	
-	<link href="http://www.micblo.com/stat/ace/js/themes/sunburst.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace.min.css" />
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="http://www.micblo.com/stat/ace/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/assets/css/doc.css">
+    <link href="http://www.micblo.com/stat/ace/js/themes/sunburst.css" rel="stylesheet" />
+</head>
 
-	<style>
-		.navbar {
-			background: #438EB9 !important;
-		}
-		body {
-			font-size: 14px;
-		}
-		.skin-3 .main-container:before {
-			background: #F6F6F6;
-		}
-		.page-content {
-			padding-top: 25px;
-			padding-bottom: 75px;
-			max-width: 700px;
-			margin: 0 auto;
-		}
-
-		.help-content {
-			background-color: #FFF;
-			max-width: 680px;
-			margin: 0 auto;
-			padding: 12px 24px;
-			border:1px solid #C5D0DC;
-		}
-		.help-content > .widget-box > .widget-header > .info-title {
-			cursor: pointer;
-		}
-		.help-content > .widget-box > .widget-header > .info-title:hover {
-			background-color: #DCE8F1;
-		}
-		.help-content > .widget-box.collapsed > .widget-header {
-			border-bottom-width: 0;
-		}
-		
-		.help-content > .widget-box {
-			border-bottom: 1px solid #DCE8F1;
-			margin-bottom: 10px;
-			padding-bottom: 5px;
-			transition: none;
-		}
-		.help-content > .widget-box.collapsed {
-			padding-bottom: 10px;
-			transition: padding-bottom 0.1s;
-		}
-		.help-content > .widget-box:last-child {
-			border-bottom-width: 0;
-			margin-bottom: 0;
-		}
-		
-		.help-content > .widget-box:only-child {
-			padding-bottom: 0;
-			padding-bottom: 5px;
-		}
-		
-		
-		.info-list {
-			margin: 0;
-		}
-		.info-list > li:nth-child(odd) > .ace-icon:first-child {
-			color: #478FCA;
-		}
-		.info-list > li:nth-child(even) > .ace-icon:first-child {
-			color: #69AA46;
-		}
-		.info-list > li:not(.hr) {
-			margin-top: 0;
-			margin-bottom: 0;
-			padding: 16px 12px;
-			line-height: 22px;
-		}
-		.info-list > li:not(.hr):nth-child(even) {
-			background-color: #FFF;
-			border: 1px solid #E9E9E9;
-		}
-		.info-list > li:not(.hr):nth-child(odd) {
-			background-color: #F0F4F9;
-		}
-		
-		.info-list > li:not(.hr):nth-child(even)  code
-		{
-			background-color: #F0F4F9;
-		}
-		.info-list > li:not(.hr):nth-child(odd)  code
-		{
-			background-color: #FFF;
-		}
-		
-		
-		.help-more {
-			color: #4E82A3;
-			border-bottom: 1px dotted #8BA8BA;			
-			padding: 0 1px 1px;
-		}
-		.help-more:hover {
-			text-decoration: none;
-			border-bottom-color: #628DB2;
-			background-color: #E4EAC7;
-		}
-		
-		u.dotted {
-			text-decoration: none;
-			border-bottom: 1px dotted #999;
-		}
-
-		@media only screen and (min-width: 992px) {
-			.sidebar {
-				padding-top: 4px;
-			}
-		}
-		
-		pre .close {
-			float: inherit;
-			font-size: inherit;
-			font-weight: inherit;
-			line-height: inherit;
-			opacity: inherit;
-			text-shadow: inherit;
-		}
-		
-		.open-file {
-			cursor: pointer;
-			-webkit-transition: all 0.12s;
-			transition: all 0.12s;
-		}
-		.open-file:hover {
-			background-color: #CEE0EA !important;
-		}
-		.open-file .brief-show {
-			display: none;
-		}
-		.open-file:hover .brief-show {
-			display: inline;
-		}
-		
-		.code-modal .modal-dialog {
-			margin-top: 6px;
-			margin-bottom: 6px;
-		}
-		.code-modal .modal-header {
-			padding-top: 6px;
-			padding-bottom: 6px;
-		}
-		.code-modal .modal-body {
-			padding: 10px 12px
-		}
-		
-		
-		pre {
-			border-width: 0;
-			box-shadow: none;
-			border-radius: 0;
-			margin-top: 8px;
-		}
-		
-		a[href^="http"]:before {
-		   font-family: FontAwesome;
-		   font-size: 15px;
-		   content: "\f08e";
-		   display: inline;
-		   margin-right: 3px;
-		}
-		a.external_link[href^="http"]:before {
-			display: none;
-		}
-		
-		.thumbnail {
-		  margin: 12px 0 8px;
-		}
-	</style>
-  </head>
-
-  <body class="no-skin skin-3">	
-     <div id="navbar" class="navbar navbar-default navbar-fixed-top h-navbar">
-		<div class="navbar-container container" id="navbar-container">
-			<div class="navbar-header pull-left ace-navbar-brand">
+<body class="no-skin skin-3">
+<div id="navbar" class="navbar navbar-default navbar-fixed-top h-navbar">
+    <div class="navbar-container container" id="navbar-container">
+        <div class="navbar-header pull-left ace-navbar-brand">
 				<span class="no-skin">
 				 <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
-					<span class="sr-only">Toggle sidebar</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				 </button>
+                     <span class="sr-only">Toggle sidebar</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
 				</span>
-				<a href="#" class="navbar-brand">
-					<small>
-						&nbsp;<i class="glyphicon glyphicon-book"></i>&nbsp;
-                        Bilibili 直播弹幕助手 <span class="smaller-75">(v1.0.0)</span>
-					</small>
-				</a><!-- /.brand -->
-			</div>
-		</div>
+            <a href="#" class="navbar-brand">
+                <small>
+                    &nbsp;<i class="glyphicon glyphicon-book"></i>&nbsp;
+                    Bilibili 直播弹幕助手 <span class="smaller-75">(v2.1.0)</span>
+                </small>
+            </a><!-- /.brand -->
+        </div>
     </div>
+</div>
 
-    <div  class="main-container container">
-		<script>
-		 if(document.location.protocol == 'file:') {
-			document.write('<div class="alert alert-danger">\
+<div  class="main-container container">
+    <script>
+        if(document.location.protocol == 'file:') {
+            document.write('<div class="alert alert-danger">\
 			<strong>Please open this page using <span class="text-info">`http` protocol</span>, i.e. access it like this <span class="text-primary">http://127.0.0.1/path/to/ace/docs/index.html</span></strong><br />\
 			Demo pages, documentation & CSS/JS builder pages, load data dynamically using ajax and <b>`file` protocol</b> prevents that due to browser restrictions.\<br />\
 			Also some browsers such as Firefox don\'t load fonts when resource files are inside an upper level directory.\
 			</div>');
-		 }
-		</script>
-      <div class="sidebar responsive sidebar-fixed" id="sidebar">
+        }
+    </script>
+    <div class="sidebar responsive sidebar-fixed" id="sidebar">
         <ul class="nav nav-list">
-          <li class="highlight">
-			<a href="#intro">
-				<span class="menu-icon">&#x2170;.</span>
-				<span class="menu-text">简介</span>
-			</a>
-			<b class="arrow"></b>
-		  </li>
+            <li class="highlight">
+                <a href="#intro">
+                    <span class="menu-icon">&#x2170;.</span>
+                    <span class="menu-text">简介</span>
+                </a>
+                <b class="arrow"></b>
+            </li>
 
 
             <li class="highlight">
@@ -245,287 +75,99 @@
             </li>
 
             <li class="highlight hover">
-			<a href="#changes" class="dropdown-toggle">
-				<span class="menu-icon">&#x2172;.</span>
-				<span class="menu-text">更新日志</span>
-				<b class="arrow fa fa-angle-right"></b>
-			</a>
-			<b class="arrow"></b>
-			<ul class="submenu">
-				<li class="hover"><a href="#changes.v1_0_0"><i class="menu-icon fa fa-caret-right"></i> v1.0.0</a></li>
-			</ul>
-			<b class="arrow"></b>
-		  </li>
+                <a href="#changes" class="dropdown-toggle">
+                    <span class="menu-icon">&#x2172;.</span>
+                    <span class="menu-text">更新日志</span>
+                    <b class="arrow fa fa-angle-right"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="hover"><a href="#changes.v2_1_0"><i class="menu-icon fa fa-caret-right"></i> v2.1.0</a></li>
+                    <li class="hover"><a href="#changes.v2_0_0"><i class="menu-icon fa fa-caret-right"></i> v2.0.0</a></li>
+                    <li class="hover"><a href="#changes.v1_1_0"><i class="menu-icon fa fa-caret-right"></i> v1.1.0</a></li>
+                    <li class="hover"><a href="#changes.v1_0_0"><i class="menu-icon fa fa-caret-right"></i> v1.0.0</a></li>
+                </ul>
+                <b class="arrow"></b>
+            </li>
 
-		  <li class="highlight hover">
-			<a href="#" class="dropdown-toggle">
-				<span class="menu-icon">&#x2173;.</span>
-				<span class="menu-text">配置</span>
-                <b class="arrow fa fa-angle-right"></b>
-			</a>
-			<b class="arrow"></b>
-			<ul class="submenu">
-				<li class="hover"><a href="#config/format"><i class="menu-icon fa fa-caret-right"></i> 配置文件详解</a></li>
-				<li class="hover"><a href="#config/tool"><i class="menu-icon fa fa-caret-right"></i> 快速配置工具</a></li>
-			</ul>
-		  </li>
-		  
-		  <li class="highlight hover">
-			<a href="#" class="dropdown-toggle">
-				<span class="menu-icon">&#x2174;.</span>
-				<span class="menu-text">API</span>
-				<b class="arrow fa fa-angle-right"></b>
-			</a>
-			<b class="arrow"></b>
-			<ul class="submenu">
-				<li class="hover"><a href="#api/commentclient"><i class="menu-icon fa fa-caret-right"></i> 弹幕服务器客户端</a></li>
-				<li class="hover"><a href="#api/biliinterface"><i class="menu-icon fa fa-caret-right"></i> bilibili接口</a></li>
-                <li class="hover"><a href="#api/commentsource"><i class="menu-icon fa fa-caret-right"></i> 弹幕源数据</a></li>
-			</ul>
-		  </li>
+            <li class="highlight hover">
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-icon">&#x2173;.</span>
+                    <span class="menu-text">配置</span>
+                    <b class="arrow fa fa-angle-right"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="hover"><a href="#config/format"><i class="menu-icon fa fa-caret-right"></i> 配置文件详解</a></li>
+                    <li class="hover"><a href="#config/tool"><i class="menu-icon fa fa-caret-right"></i> 快速配置工具</a></li>
+                </ul>
+            </li>
 
-		   <li class="highlight">
-			<a href="#feedback">
-				<i class="menu-icon fa fa-comments"></i>
-				<span class="menu-text">反馈</span>
-			</a>
-			<b class="arrow"></b>
-		  </li>
-		  
+            <li class="highlight hover">
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-icon">&#x2174;.</span>
+                    <span class="menu-text">API</span>
+                    <b class="arrow fa fa-angle-right"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="hover"><a href="#api/commentclient"><i class="menu-icon fa fa-caret-right"></i> 弹幕服务器客户端</a></li>
+                    <li class="hover"><a href="#api/biliinterface"><i class="menu-icon fa fa-caret-right"></i> bilibili直播接口</a></li>
+                    <li class="hover"><a href="#api/commentsource"><i class="menu-icon fa fa-caret-right"></i> 弹幕源数据</a></li>
+                </ul>
+            </li>
+
+            <li class="highlight">
+                <a href="#feedback">
+                    <i class="menu-icon fa fa-comments"></i>
+                    <span class="menu-text">反馈</span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+
         </ul>
-		
-		<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-		 	<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-		 </div>
-      </div>
 
-      <div class="main-content">
-		<div class="page-content">
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="page-content">
         </div><!-- /.page-content -->
-      </div><!-- /.main-content -->
+    </div><!-- /.main-content -->
 
-	 
- 	  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-		<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-	  </a><!-- /.btn-scroll-up -->
-		
-  </div><!-- /.main-container -->
 
-	<!--[if !IE]> -->
-	<script src="http://www.micblo.com/stat/ace/js/jquery.min.js"></script>
-	<!-- <![endif]-->
-	<!--[if IE]>
-	<script src="http://www.micblo.com/stat/ace/js/jquery1x.min.js"></script>
-	<![endif]-->
-	
-	<script src="http://www.micblo.com/stat/ace/js/bootstrap.min.js"></script>
-    <script src="http://www.micblo.com/stat/ace/js/prettify.js"></script>
-	
-	<script src="http://www.micblo.com/stat/ace/js/ace-extra.min.js"></script>
-	<script src="http://www.micblo.com/stat/ace/js/ace.min.js"></script>
-	<script src="http://www.micblo.com/stat/ace/js/ace-elements.min.js"></script>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a><!-- /.btn-scroll-up -->
 
-	<script>
-	$(function() {
-		//$('body').scrollspy({ target: '.sidebar' })
-	
-		//used for top next/prev buttons
-		var section_list = [], section_map = {}, current = 0;
-		var sindex = 0;
-		$('.sidebar .nav-list a').each(function() {
-			var href = getHref($(this).attr('href'));
-			if(href) {
-				section_list.push(href);
-				section_map[href] = sindex++;
-			}
-		});
+</div><!-- /.main-container -->
 
-		$('#help-move-prev').on('click', function(e) {
-			e.preventDefault();
-			if( --current >= 0 ) {
-				var href = section_list[current];
-				document.location.hash = href;
-			}
-			if(current < 0) current = 0;
-		});
-		$('#help-move-next').on('click', function(e) {
-			e.preventDefault();
-			if( ++current < section_list.length ) {
-				var href = section_list[current];
-				document.location.hash = href;
-			}
-			if(current >= section_list.length) current = section_list.length - 1;
-		});
+<!--[if !IE]> -->
+<script src="http://www.micblo.com/stat/ace/js/jquery.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="http://www.micblo.com/stat/ace/js/jquery1x.min.js"></script>
+<![endif]-->
 
-		$(document).on(ace.click_event, '.help-content > .widget-box > .widget-header > .info-title', function(e) {
-			var widget_box = $(this).closest('.widget-box').widget_box('toggle');
-		});
-		
-		$(document).off(ace.click_event+'.ace.submenu', '.sidebar .nav-list');
-		$(document).on(ace.click_event+'.ace.submenu', '.sidebar .nav-list a', function(e) {
-			var href = getHref($(this).attr('href'));
-			if(!href) return false;
-		});
+<script src="http://www.micblo.com/stat/ace/js/bootstrap.min.js"></script>
+<script src="http://www.micblo.com/stat/ace/js/prettify.js"></script>
 
-		$(window).on('hashchange.help', function(e) {
-			var href = getHref(window.location.hash);
-			if(!href) return false;
-			return gotoUrl(href);			
-		})
-		$(document).on(ace.click_event+'.help', '.help-more', function(ev) {
-			var href = $(this).attr('href');
-			if(window.location.hash == href) gotoUrl(href);
-		});
+<script src="http://www.micblo.com/stat/ace/js/ace-extra.min.js"></script>
+<script src="http://www.micblo.com/stat/ace/js/ace.min.js"></script>
+<script src="http://www.micblo.com/stat/ace/js/ace-elements.min.js"></script>
 
-		var href = getHref(window.location.hash);
-		if(!href) window.location.hash = '#intro';
-		else $(window).triggerHandler('hashchange.help');
-		
-		var prev_target = null;
+<script src="/assets/js/doc.js"></script>
 
-		function gotoUrl(href) {
-			current = section_map[href];
+<script src="http://www.micblo.com/stat/ace/js/rainbow.js"></script>
+<script src="http://www.micblo.com/stat/ace/js/language/generic.js"></script>
+<script src="http://www.micblo.com/stat/ace/js/language/javascript.js"></script>
 
-			var url = href.replace(/\..*$/g, '').replace(/#/gi , '')
-			var parts = url.split('/');
-			if(parts.length == 1) {
-				if(url.length == 0) url = 'intro';
-				url = url+'/index.html';
-			}
-			else if(parts.length > 1) {
-				url = url+'.html';
-			}
-			
-			$('.sidebar .active').removeClass('active');
-			var link = $('a[href="'+href+'"]').eq(0);
-			link.parents('li').addClass('active');
-			
-			var text = $.trim(link.find('.menu-text').text());
-			if(text.length == 0) text = $.trim(link.text());
-			document.title = text + " - Bilibili 直播弹幕助手";
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol +"hm.baidu.com/h.js%3Fd9963d295c0ee7bf820d93d3b07b1e4f' type='text/javascript'%3E%3C/script%3E"));
+</script>
 
-			if(!scrollToTarget(href)) {
-				$('.page-content').empty().html('<i class="ace-icon fa fa-spinner fa-spin blue fa-2x"></i>');
-			
-				//otherwise try downloading the page
-				$.ajax({url: 'sections/'+url}).done(function(result) {
-					result = result.replace(/\<pre(?:\s+)data\-language=["'](?:html|javascript|php)["']\>([\S|\s]+?)\<\/pre\>/ig, function(a, b){
-						return a.replace(b , b.replace(/\</g , '&lt;').replace(/\>/g , '&gt;'));
-					});
-					
-					$('.page-content').addClass('hidden').empty().html(result);
-					formatResult();
-					
-					scrollToTarget(href);
-				}).fail(function() {
-					$('.page-content').empty().html('<div class="alert alert-danger"><i class="fa fa-warning"></i> 访问页面失败! 请稍后再试</div>');
-				});
-			}
-
-			return true;
-		}
-		
-		function formatResult() {
-			$('.page-content .info-section').each(function() {
-				var header = $(this).prevAll('.info-title').eq(0).addClass('widget-title').wrap('<div class="widget-header" />')
-				.parent().append('<div class="widget-toolbar no-border">\
-				<a href="#" data-action="collapse">\
-					<i data-icon-hide="fa-minus" data-icon-show="fa-plus" class="ace-icon fa fa-plus"></i>\
-				</a>\
-			</div>').closest('.widget-header');
-
-				$(this).wrap('<div class="widget-box transparent'+(header.length > 0 ? ' collapsed':'')+'"><div class="widget-body"><div class="widget-main"></div></div></div>');
-				$(this).closest('.widget-box').prepend(header);
-				
-				$(this).ace_scroll({size: parseInt($(window).height()  - 200), reset: true});
-			});
-			
-			Rainbow.color();
-			
-			$('.page-content').removeClass('hidden');
-		}
-		
-		function getHref(href) {
-			href = href && href.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-			href = $.trim(href);
-			if(href.match(/[\#\/]$/i)) return false;
-			return href;
-		}
-		
-		function scrollToTarget(href) {
-			target = $('[data-id="'+href+'"]').eq(0);
-			if(target.length == 1) {
-				target.closest('.widget-box').widget_box('show');
-
-				//if target exists on page scroll to it
-				$('html,body').animate({scrollTop: target.offset().top - 75} , 300);
-				if(prev_target) prev_target.find('.fa-angle-right').remove();
-				
-				if(!target.is('h1')) target.prepend('<i class="fa fa-angle-right red"></i> ');
-				prev_target = target;
-				
-				return true;
-			}
-			return false;//section not found, go back and get it via ajax
-		}
-		
-		
-		$(document).on(ace.click_event, '.open-file[data-open-file]', function() {
-			var url = $(this).text();
-			var language = $(this).attr('data-open-file');
-			$.ajax({url: '../'+url, dataType:'text'}).done(function(content) {
-				if(language != 'json') {
-					if(language != 'css') {
-						//replace each tab character with two spaces (only those that start at a new line)
-						content = content.replace(/\n[\t]{1,}/g, function(p, q) {
-							return p.replace(/\t/g, "  ");
-						});
-					} else {
-						content = content.replace(/\t/g , "  ")
-					}
-				}
-				else {
-					content = JSON.stringify(JSON.parse(content), null, 2);
-				}
-				content = content.replace(/\>/g, '&gt;').replace(/\</g, '&lt;')
-				Rainbow.color(content, language, function(highlighted_code) {
-					display_code(url, highlighted_code);
-					
-				});
-			});
-		});
-		
-		function display_code(url, highlighted_code) {
-			var modal = $(document.body).find('#code-modal');
-			if(modal.length == 0) {
-				modal = $('<div id="code-modal" class="modal fade code-modal" tabindex="-1" role="dialog" aria-labelledby="CodeDialog" aria-hidden="true">\
-				  <div class="modal-dialog modal-lg">\
-					<div class="modal-content">\
-						<div class="modal-header">\
-						  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>\
-						  <i class="fa fa-file-o"></i>\
-						  <code class="code-url"></code>\
-						</div>\
-						<div class="modal-body"><pre class="code-content"></pre></div>\
-					</div>\
-				  </div>\
-				</div>').appendTo('body');
-			}
-			
-			modal.find('.code-url').html(url);
-			modal.find('.code-content').html(highlighted_code);
-			modal.modal('show');
-		}
-	});
-	</script>
-	
-	<script src="http://www.micblo.com/stat/ace/js/rainbow.js"></script>
-	<script src="http://www.micblo.com/stat/ace/js/language/generic.js"></script>
-	<script src="http://www.micblo.com/stat/ace/js/language/javascript.js"></script>
-     <script type="text/javascript">
-         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-         document.write(unescape("%3Cscript src='" + _bdhmProtocol +"hm.baidu.com/h.js%3Fd9963d295c0ee7bf820d93d3b07b1e4f' type='text/javascript'%3E%3C/script%3E"));
-     </script>
-
-  </body>
+</body>
 </html>

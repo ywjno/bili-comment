@@ -1,14 +1,11 @@
 <section>
-<h1 class="blue" data-id="#settings"><i class="ace-icon fa fa-info grey"></i> bilibili接口</h1>
+<h1 class="blue" data-id="#settings"><i class="ace-icon fa fa-info grey"></i> bilibili直播接口</h1>
 
 <div class="hr hr-double hr32"></div>
 <!-- #section:api -->
 <div class="help-content">
     <p>
-        <b>bilibili接口</b> 是根目录下的 <b>bili-live.js</b>。它是一个<b>Node.js</b>的库。
-    </p>
-    <p>
-        它只是为了助手而设计的，并没有完善好API，只准备了必需的API。
+        <b>bilibili直播接口</b> 是是一个<b>Node.js</b>的与B站直播接口有关的库。
     </p>
 </div>
 <div class="hr hr-double hr32"></div>
@@ -18,11 +15,11 @@
     <div class="info-section">
         <ul class="info-list list-unstyled">
             <li>
-                要启用 <b>bilibili接口</b> 很简单，只需要你 :
+                要调用 <b>bilibili直播接口</b> 很简单，只需要你 :
 <pre data-language="javascript">
-var Bili_live = require('./bili-live.js');
+var Bili_live = require('bili-comment').LiveAPI; //bili-comment 是助手的根目录位置
 </pre>
-                下面会详细讲解<b>bilibili接口</b>的一些命令。
+                下面会详细讲解<b>bilibili直播接口</b>的一些命令。
             </li>
         </ul>
     </div>
@@ -31,82 +28,93 @@ var Bili_live = require('./bili-live.js');
 
 <div class="hr hr-double hr32"></div>
 <h2 class="blue lighter help-title" data-id="#api/biliinterface.command">
-    命令
+    方法
 </h2>
 <div class="space-4"></div>
 
 <!-- #section:api.command -->
 <div class="help-content">
-    <h3 class="info-title smaller" data-id="#api/biliinterface.getlivepageinfo">getLivePageInfo(liveid)</h3>
+    <h3 class="info-title smaller" data-id="#api/biliinterface.getLivePageInfo">getLivePageInfo(live_id, callback)</h3>
     <!-- #section:api.getLivePageInfo -->
     <div class="info-section">
         <ul class="info-list list-unstyled">
             <li>
-                <code>liveid</code>  bilibili直播间的roomid。</br>
-                <code>callback (error , info )</code>  回调函数。
+                <code>live_id</code>  bilibili直播间ID<br>
+                <code>callback (error, info)</code>  回调函数
             </li>
             <li>
                 返回bilibili直播间的基础信息。
-            </li>
-            <li>
-                info:</br>
-                <code>sch_id</code>  bilibili直播间的当前节目的sch_id。</br>
-                <code>meta_id</code>  bilibili直播间的当前节目的meta_id。</br>
-                <code>state</code>  bilibili直播间的当前节目的状态。 <code>PREPARE</code>是准备,<code>LIVE</code>是直播中,<code>END</code>是直播结束。
             </li>
         </ul>
     </div>
     <!-- /section:api.getLivePageInfo -->
 
-    <h3 class="info-title smaller" data-id="#api/commentclient.getliveinfo">getLiveInfo(liveid)</h3>
-    <!-- #section:api.getLiveInfo -->
-    <div class="info-section">
-        <ul class="info-list list-unstyled">
-            <li>
-                <code>liveid</code>  bilibili直播间的roomid。</br>
-                <code>callback (error , info )</code>  回调函数。
-            </li>
-            <li>
-                返回bilibili直播间的节目表。
-            </li>
-            <li>
-                info:</br>
-                <code>sch_id</code>  bilibili直播间的节目的sch_id。</br>
-                <code>meta_id</code>  bilibili直播间的节目的meta_id。</br>
-                <code>start</code>  bilibili直播间的节目的开始时间(UnixTiemstamp)。</br>
-                <code>start_at</code>  bilibili直播间的节目的开始时间(Date)。</br>
-                <code>aid</code>  bilibili直播间的节目的aid。</br>
-                <code>cid</code>  bilibili直播间的节目的cid。</br>
-                <code>title</code>  bilibili直播间的节目的标题。</br>
-                <code>description</code>  bilibili直播间的节目的描述。</br>
-                <code>typeid</code>  bilibili直播间的节目的节目类型。</br>
-                <code>tag</code>  bilibili直播间的节目的关键字。</br>
-                <code>state</code>  bilibili直播间的节目的状态（不一定准确，以getLivePageInfo为准）。 <code>PREPARE</code>是准备,<code>LIVE</code>是直播中,<code>END</code>是直播结束。</br>
-                <code>check_status</code>  bilibili直播间的节目的认证状态。
-            </li>
-        </ul>
-    </div>
-    <!-- /section:api.getLiveInfo -->
-
-    <h3 class="info-title smaller" data-id="#api/biliinterface.getplayeinfo">getPlayerInfo(cid,[cookies],callback)</h3>
+    <h3 class="info-title smaller" data-id="#api/biliinterface.getPlayerInfo">getPlayerInfo(cid, cookies, callback)</h3>
     <!-- #section:api.getPlayerInfo -->
     <div class="info-section">
         <ul class="info-list list-unstyled">
             <li>
-                <code>cid</code>  bilibili直播间节目的cid。</br>
-                <code>cookies</code>  登录账号的Cookies(可空)。</br>
-                <code>callback (error , info )</code>  回调函数。
+                <code>cid</code> bilibili直播间ID<br>
+                <code>cookies</code> 登录账号的Cookies(可空)<br>
+                <code>callback (error, info)</code> 回调函数
             </li>
             <li>
-                返回bilibili直播间的player信息。
+                获取播放器信息。例如弹幕服务器的HOST。
             </li>
             <li>
-                info:</br>
+                info:<br>
                 是一个<b>XMLreader</b>类型的变量。具体使用方式请<a href="https://www.npmjs.org/package/xmlreader" target="_blank">https://www.npmjs.org/package/xmlreader</a>
             </li>
         </ul>
     </div>
     <!-- /section:api.getPlayerInfo -->
+
+    <h3 class="info-title smaller" data-id="#api/biliinterface.getRoomInfo">getRoomInfo(live_id, callback)</h3>
+    <!-- #section:api.getRoomInfo -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>live_id</code>  bilibili直播间ID<br>
+                <code>callback (error, info)</code>  回调函数
+            </li>
+            <li>
+                获取弹幕房间信息。<br>
+                例如: 可以获取最近的10个弹幕和房管列表
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.getRoomInfo -->
+
+    <h3 class="info-title smaller" data-id="#api/biliinterface.getGiftRankList">getGiftRankList(live_id, callback)</h3>
+    <!-- #section:api.getGiftRankList -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>live_id</code>  bilibili直播间ID<br>
+                <code>callback (error, info)</code>  回调函数
+            </li>
+            <li>
+                获取直播间七日礼物赠送榜。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.getGiftRankList -->
+
+    <h3 class="info-title smaller" data-id="#api/biliinterface.getMedalRankList">getMedalRankList(live_id, callback)</h3>
+    <!-- #section:api.getMedalRankList -->
+    <div class="info-section">
+        <ul class="info-list list-unstyled">
+            <li>
+                <code>live_id</code>  bilibili直播间ID<br>
+                <code>callback (error, info)</code>  回调函数
+            </li>
+            <li>
+                获取主播粉丝榜。
+            </li>
+        </ul>
+    </div>
+    <!-- /section:api.getMedalRankList -->
+
 </div>
 <!-- /section:api -->
 
