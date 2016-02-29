@@ -51,7 +51,7 @@ lang.comment_cmds = {
 };
 
 lang.vip_types = [
-    "老爷", "管理员"
+    "老爷", "房管", "年费老爷"
 ];
 
 const ERROR_LIST = [
