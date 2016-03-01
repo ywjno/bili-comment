@@ -28,7 +28,7 @@ node_modules
 .lock-wscript
 
 # WerbStorm Project File
-#.idea
+.idea
 
 # Saved Danmu File
 comment
