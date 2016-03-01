@@ -42,7 +42,8 @@ util.args2ConfigObject = function(program) {
             reconnect: false,//!!program.reconnect
             output: !!program.output,
             output_path: program.output_path,
-            output_filename: program.output_filename
+            output_filename: program.output_filename,
+            play_speech: !!program.play_speech
         },
         server: {
             host: program.host,
