@@ -35,3 +35,6 @@ comment
 
 #ignore CMD files
 *.cmd
+
+bili-comment.iml
+config.json
